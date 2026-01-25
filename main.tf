@@ -43,11 +43,11 @@ module "nginx_ingress" {
   create_namespace = var.nginx_ingress_create_namespace
 
   set_values = {
-    "controller.replicaCount"                            = tostring(var.nginx_ingress_replica_count)
-    "controller.service.type"                            = "LoadBalancer"
+    "controller.replicaCount"                                                                                       = tostring(var.nginx_ingress_replica_count)
+    "controller.service.type"                                                                                       = "LoadBalancer"
     "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path" = "/healthz"
-    "controller.admissionWebhooks.enabled"               = "true"
-    "controller.metrics.enabled"                         = "true"
+    "controller.admissionWebhooks.enabled"                                                                          = "true"
+    "controller.metrics.enabled"                                                                                    = "true"
   }
 
   depends_on = [module.aks]
