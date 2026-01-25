@@ -50,3 +50,7 @@ output "aks_network_plugin" {
   value       = var.network_plugin
 }
 
+output "nginx_ingress_status" {
+  description = "Status of the NGINX Ingress Controller Helm release"
+  value       = var.nginx_ingress_enabled ? module.nginx_ingress[0].release_metadata : null
+}

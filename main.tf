@@ -31,4 +31,24 @@ module "aks" {
   depends_on = [module.resource_group]
 }
 
+module "nginx_ingress" {
+  source = "./modules/helm_release"
+  count  = var.nginx_ingress_enabled ? 1 : 0
 
+  release_name     = var.nginx_ingress_release_name
+  repository       = var.nginx_ingress_repository
+  chart            = var.nginx_ingress_chart
+  chart_version    = var.nginx_ingress_chart_version
+  namespace        = var.nginx_ingress_namespace
+  create_namespace = var.nginx_ingress_create_namespace
+
+  set_values = {
+    "controller.replicaCount"                            = tostring(var.nginx_ingress_replica_count)
+    "controller.service.type"                            = "LoadBalancer"
+    "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path" = "/healthz"
+    "controller.admissionWebhooks.enabled"               = "true"
+    "controller.metrics.enabled"                         = "true"
+  }
+
+  depends_on = [module.aks]
+}

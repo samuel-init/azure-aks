@@ -91,3 +91,51 @@ variable "load_balancer_sku" {
   type        = string
   default     = "standard"
 }
+
+variable "nginx_ingress_enabled" {
+  description = "Enable NGINX Ingress Controller installation"
+  type        = bool
+  default     = true
+}
+
+variable "nginx_ingress_release_name" {
+  description = "Helm release name for NGINX Ingress"
+  type        = string
+  default     = "ingress-nginx"
+}
+
+variable "nginx_ingress_repository" {
+  description = "Helm repository URL for NGINX Ingress"
+  type        = string
+  default     = "https://kubernetes.github.io/ingress-nginx"
+}
+
+variable "nginx_ingress_chart" {
+  description = "Helm chart name for NGINX Ingress"
+  type        = string
+  default     = "ingress-nginx"
+}
+
+variable "nginx_ingress_chart_version" {
+  description = "Helm chart version for NGINX Ingress"
+  type        = string
+  default     = "4.9.0"
+}
+
+variable "nginx_ingress_namespace" {
+  description = "Kubernetes namespace for NGINX Ingress"
+  type        = string
+  default     = "ingress-nginx"
+}
+
+variable "nginx_ingress_create_namespace" {
+  description = "Create namespace for NGINX Ingress if it doesn't exist"
+  type        = bool
+  default     = true
+}
+
+variable "nginx_ingress_replica_count" {
+  description = "Number of NGINX Ingress controller replicas"
+  type        = number
+  default     = 2
+}
