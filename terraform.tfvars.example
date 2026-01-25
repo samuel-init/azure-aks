@@ -1,0 +1,12 @@
+# Example Terraform Variables File
+# Copy this file to terraform.tfvars and update the values as needed
+
+# General Settings
+resource_group_name = "rg-aks-default"
+location            = "eastus"
+
+tags = {
+  Environment = "Development"
+  Project     = "AKS-Default-Network"
+  ManagedBy   = "Terraform"
+}
