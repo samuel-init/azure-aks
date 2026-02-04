@@ -55,7 +55,7 @@ variable "default_node_pool_max_count" {
 }
 
 variable "enable_auto_scaling" {
-  description = "Enable autoscaling for the default node pool"
+  description = "Enable cluster autoscaler for the default node pool"
   type        = bool
   default     = true
 }
