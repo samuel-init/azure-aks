@@ -8,6 +8,9 @@
 # Sensitive variable files
 *.tfvars
 !terraform.tfvars.example
+!terraform-dev.tfvars
+!terraform-staging.tfvars
+!terraform-prod.tfvars
 
 # Crash log files
 crash.log
