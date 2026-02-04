@@ -12,7 +12,7 @@ resource "helm_release" "this" {
   wait            = var.wait
 
   dynamic "set" {
-    for_each = var.set_values != null ? var.set_values : {}
+    for_each = tomap(var.set_values)
     content {
       name  = set.key
       value = set.value
@@ -20,10 +20,10 @@ resource "helm_release" "this" {
   }
 
   dynamic "set_sensitive" {
-    for_each = var.set_sensitive_values != null ? var.set_sensitive_values : {}
+    for_each = nonsensitive(tomap(var.set_sensitive_values))
     content {
       name  = set_sensitive.key
-      value = set_sensitive.value
+      value = var.set_sensitive_values[set_sensitive.key]
     }
   }
 
