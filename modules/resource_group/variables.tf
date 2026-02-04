@@ -6,6 +6,7 @@ variable "resource_group_name" {
 variable "location" {
   description = "Azure region for the resource group"
   type        = string
+  # sensitive = true
 }
 
 variable "tags" {

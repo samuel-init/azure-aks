@@ -6,12 +6,12 @@ resource "azurerm_kubernetes_cluster" "this" {
   kubernetes_version  = var.kubernetes_version
 
   default_node_pool {
-    name                = var.default_node_pool_name
-    vm_size             = var.default_node_pool_vm_size
-    node_count          = var.enable_auto_scaling ? null : var.default_node_pool_node_count
-    min_count           = var.enable_auto_scaling ? var.default_node_pool_min_count : null
-    max_count           = var.enable_auto_scaling ? var.default_node_pool_max_count : null
-    enable_auto_scaling = var.enable_auto_scaling
+    name                 = var.default_node_pool_name
+    vm_size              = var.default_node_pool_vm_size
+    node_count           = var.default_node_pool_node_count
+    min_count            = var.enable_auto_scaling ? var.default_node_pool_min_count : null
+    max_count            = var.enable_auto_scaling ? var.default_node_pool_max_count : null
+    auto_scaling_enabled = var.enable_auto_scaling
 
     type                         = "VirtualMachineScaleSets"
     only_critical_addons_enabled = false
@@ -29,8 +29,8 @@ resource "azurerm_kubernetes_cluster" "this" {
     load_balancer_sku = var.load_balancer_sku
     outbound_type     = "loadBalancer"
 
-    service_cidr       = var.network_plugin == "azure" ? "10.0.0.0/16" : null
-    dns_service_ip     = var.network_plugin == "azure" ? "10.0.0.10" : null
+    service_cidr   = var.network_plugin == "azure" ? "10.0.0.0/16" : null
+    dns_service_ip = var.network_plugin == "azure" ? "10.0.0.10" : null
   }
 
   sku_tier = "Free"

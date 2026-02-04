@@ -21,10 +21,10 @@ output "release_status" {
 output "release_metadata" {
   description = "Metadata of the Helm release"
   value = {
-    name       = helm_release.this.name
-    namespace  = helm_release.this.namespace
-    version    = helm_release.this.version
-    chart      = helm_release.this.chart
+    name        = helm_release.this.name
+    namespace   = helm_release.this.namespace
+    version     = helm_release.this.version
+    chart       = helm_release.this.chart
     app_version = helm_release.this.metadata[0].app_version
   }
 }
